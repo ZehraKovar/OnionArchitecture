@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
-    public class Book
+    public class Role
     {
         [Key]
         public Guid Id { get; set; }
-        public string Name {  get; set; }
+        public string Name { get; set; }
     }
 }
