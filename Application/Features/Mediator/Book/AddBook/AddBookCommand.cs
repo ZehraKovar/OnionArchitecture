@@ -1,12 +1,14 @@
-﻿using System;
+﻿using MediatR;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
-namespace Application.Features.CQRS.Book.AddBook
+namespace Application.Features.Mediator.Book.AddBook
 {
-    public class AddBookCommand
+    public class AddBookCommand:IRequest
     {
         public string Name {  get; set; }
     }
