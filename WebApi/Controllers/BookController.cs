@@ -1,7 +1,9 @@
 ﻿using Application.Features.Mediator.Book.AddBook;
 using Application.Features.Mediator.Book.GetBooks;
+using Application.Validators;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 
 namespace WebApi.Controllers
 {
@@ -26,7 +28,13 @@ namespace WebApi.Controllers
         [HttpPost]
         public async Task<IActionResult> Add(AddBookCommand command)
         {
-             await _mediator.Send(command);
+            var validator = new BookValidator();
+            var validatorResult=validator.Validate(command);
+            if (!validatorResult.IsValid)
+            {
+                return BadRequest(validatorResult.Errors);
+            }
+            await _mediator.Send(command);
             return Ok("");
         }
     }
